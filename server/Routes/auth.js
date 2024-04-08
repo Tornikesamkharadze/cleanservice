@@ -98,4 +98,30 @@ router.post("/login", async (req, res) => {
   }
 });
 
+/* ADD ORDER */
+router.post("/order", async (req, res) => {
+  try {
+    const { userId, orderData } = req.body;
+
+    // Find the user by userId
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found!" });
+    }
+
+    // Add the orderData to the user's orders array
+    user.orders.push(orderData);
+
+    // Save the updated user
+    await user.save();
+
+    // Send a success message
+    res.status(200).json({ message: "Order added successfully!" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;
