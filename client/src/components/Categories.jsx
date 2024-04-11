@@ -3,6 +3,7 @@ import { categories } from "../data";
 import "../styles/Categories.scss";
 import { Link } from "react-router-dom";
 import DryCleaningMobile from "./DryCleaningMobile";
+import ThreeColumnCard from "./ThreeColumnCard";
 
 const Categories = () => {
   return (
@@ -60,7 +61,8 @@ const Categories = () => {
         პროცედურას ამოჰყავს ღრმად ჩამჯდარი ჭუჭყი,
         <br /> სუნი და ლაქები
       </p>
-      <DryCleaningMobile />
+      {/* <DryCleaningMobile /> */}
+      <ThreeColumnCard />
     </div>
   );
 };
