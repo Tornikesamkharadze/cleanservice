@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "../styles/Register.scss";
 import { useSelector } from "react-redux";
+import { DatePicker } from "antd";
 
 const StandartClean = () => {
-  const userId = useSelector((state) => state.user._id); // Access the userId from Redux store
-  //in state i have all info
+  const userId = useSelector((state) => state.user?._id); // Access the userId from Redux store
 
   const [orderData, setOrderData] = useState({
     firstName: "",
     lastName: "",
     phoneNumber: "",
+    date: "", // Add date field to the state
   });
 
   const [formCompleted, setFormCompleted] = useState(false); // State to track form completion
@@ -19,16 +20,30 @@ const StandartClean = () => {
     const isFormCompleted =
       orderData.firstName !== "" &&
       orderData.lastName !== "" &&
-      orderData.phoneNumber !== "";
+      orderData.phoneNumber !== "" &&
+      orderData.date !== ""; // Check if date is not empty
     setFormCompleted(isFormCompleted);
   }, [orderData]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setOrderData({
-      ...orderData,
-      [name]: value,
-    });
+    if (name === "date") {
+      // Handle date separately and format it
+      const formattedDate = new Date(value).toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      });
+      setOrderData({
+        ...orderData,
+        date: formattedDate,
+      });
+    } else {
+      setOrderData({
+        ...orderData,
+        [name]: value,
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -48,6 +63,7 @@ const StandartClean = () => {
         firstName: "",
         lastName: "",
         phoneNumber: "",
+        date: "",
       });
 
       // Update form completion state
@@ -85,9 +101,21 @@ const StandartClean = () => {
             onChange={handleChange}
             required
           />
-          <button type="submit" disabled={!formCompleted}>
-            შეკვეთის დამატება
-          </button>
+          <DatePicker
+            format="MM-DD-YYYY"
+            onChange={(date, dateString) =>
+              handleChange({ target: { name: "date", value: dateString } })
+            }
+          />
+          {userId ? (
+            <button type="submit" disabled={!formCompleted}>
+              შეკვეთის დამატება
+            </button>
+          ) : (
+            <p style={{ color: "white" }}>
+              გთხოვთ გაიაროთ რეგისტრაცია შეკვეთის გასაკეთებლად
+            </p>
+          )}
         </form>
       </div>
     </div>

@@ -2,6 +2,7 @@ import React from "react";
 import { categories } from "../data";
 import "../styles/Categories.scss";
 import { Link } from "react-router-dom";
+import DryCleaningMobile from "./DryCleaningMobile";
 
 const Categories = () => {
   return (
@@ -19,7 +20,12 @@ const Categories = () => {
               <h3 style={{ fontSize: "20px" }}>{category.title}</h3>
               <p>{category.description}</p>
               {category.linkTo && (
-                <Link className="details" to={`/category/standart/${category.linkTo}`}>გაიგე მეტი</Link>
+                <Link
+                  className="details"
+                  to={`/category/standart/${category.linkTo}`}
+                >
+                  გაიგე მეტი
+                </Link>
               )}
             </div>
           </div>
@@ -30,7 +36,7 @@ const Categories = () => {
         იდეალური გადაწყვეტილება მათთვის ვინც ახალ <br />
         ბინაში გადადის საცხოვრებლად
       </p>
-      <div className="categories_list">
+      <div className="categories_list" style={{ marginBottom: "50px" }}>
         {categories?.slice(8, 16).map((category, index) => (
           <div className="category" key={index}>
             {category.img && <img src={category.img} alt={category.label} />}
@@ -38,12 +44,23 @@ const Categories = () => {
               <h3 style={{ fontSize: "20px" }}>{category.title}</h3>
               <p>{category.description}</p>
               {category.linkTo && (
-                <Link className="details" to={`/category/general/${category.linkTo}`}>გაიგე მეტი</Link>
+                <Link
+                  className="details"
+                  to={`/category/general/${category.linkTo}`}
+                >
+                  გაიგე მეტი
+                </Link>
               )}
             </div>
           </div>
         ))}
       </div>
+      <h1>რბილი ავეჯის და ხალიჩის ქიმიური წმენდა</h1>
+      <p id="title">
+        პროცედურას ამოჰყავს ღრმად ჩამჯდარი ჭუჭყი,
+        <br /> სუნი და ლაქები
+      </p>
+      <DryCleaningMobile />
     </div>
   );
 };
