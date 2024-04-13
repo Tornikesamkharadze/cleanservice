@@ -147,7 +147,7 @@ const RegisterPage = () => {
             რეგისტრაცია
           </button>
         </form>
-        <a href="/login">უკვე გაქვთ ანგარიში? შესვლა </a>
+        <a href="/login">გაქვთ ანგარიში? შესვლა </a>
       </div>
     </div>
   );
