@@ -7,7 +7,20 @@
   justify-content: space-between;
   align-items: center;
   position: relative;
-
+  .dropdown {
+    @include ms {
+      display: flex;
+      flex-direction: column;
+      align-self: flex-start;
+    }
+    .toast {
+      border: none;
+      background-color: transparent;
+      @media screen and (min-width: 676px) {
+        display: none; // Display toast if min-width is 676px or greater
+      }
+    }
+  }
   @include sm {
     padding: 10px 20px;
   }
@@ -55,7 +68,7 @@
         color: $pinkred;
       }
 
-      @include sm {
+      @include ms {
         display: none;
       }
     }
@@ -100,6 +113,7 @@
         right: 20px;
       }
 
+      .toast,
       a {
         width: 100%;
         padding: 8px 15px;
