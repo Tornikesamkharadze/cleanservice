@@ -16,6 +16,19 @@
     width: 100%;
   }
 }
+@media screen and (max-width: 899px) {
+  .contact_wrapper {
+    display: flex;
+    .contact-method {
+      margin-top: 0px;
+    }
+  }
+}
+@media screen and (max-width: 375px) {
+  .contact_wrapper {
+    display: block;
+  }
+}
 
 .image-container {
   display: flex;

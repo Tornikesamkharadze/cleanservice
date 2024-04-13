@@ -7,7 +7,7 @@ const Contact = () => {
       <div className="contact-container">
         <div className="image-container">
           <div className="contact-info">
-            <div>
+            <div className="contact_wrapper">
               <div className="contact-details">
                 <div className="location">
                   <h2 className="location-heading">მისამართი</h2>
