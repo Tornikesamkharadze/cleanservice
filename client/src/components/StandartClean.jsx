@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "../styles/Register.scss";
 import { useSelector } from "react-redux";
 import { DatePicker } from "antd";
+import { Link } from "react-router-dom";
+import { FaArrowTurnDown } from "react-icons/fa6";
 
 const StandartClean = () => {
   const userId = useSelector((state) => state.user?._id); // Access the userId from Redux store
@@ -84,6 +86,7 @@ const StandartClean = () => {
             value={orderData.firstName}
             onChange={handleChange}
             required
+            disabled={!userId} // Disable if userId is falsy
           />
           <input
             type="text"
@@ -92,6 +95,7 @@ const StandartClean = () => {
             value={orderData.lastName}
             onChange={handleChange}
             required
+            disabled={!userId} // Disable if userId is falsy
           />
           <input
             type="text"
@@ -100,21 +104,40 @@ const StandartClean = () => {
             value={orderData.phoneNumber}
             onChange={handleChange}
             required
+            disabled={!userId} // Disable if userId is falsy
           />
           <DatePicker
             format="MM-DD-YYYY"
             onChange={(date, dateString) =>
               handleChange({ target: { name: "date", value: dateString } })
             }
+            disabled={!userId} // Disable if userId is falsy
           />
           {userId ? (
             <button type="submit" disabled={!formCompleted}>
               შეკვეთის დამატება
             </button>
           ) : (
-            <p style={{ color: "white" }}>
-              გთხოვთ გაიაროთ რეგისტრაცია შეკვეთის გასაკეთებლად
-            </p>
+            <>
+              <div
+                style={{
+                  color: "white",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <p>გთხოვთ გაიაროთ რეგისტრაცია შეკვეთის გასაკეთებლად</p>
+                <FaArrowTurnDown
+                  style={{
+                    marginLeft: "10px",
+                  }}
+                />
+              </div>
+
+              <Link id="btn" to="/register">
+                დარეგისტრირდი
+              </Link>
+            </>
           )}
         </form>
       </div>

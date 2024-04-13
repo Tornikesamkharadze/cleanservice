@@ -91,4 +91,14 @@
       }
     }
   }
+  #btn {
+    margin-top: 15px;
+
+    @include buttonStyle;
+    width: 80%;
+
+    &:hover {
+      box-shadow: 0 0 10px 3px rgba(255, 255, 255);
+    }
+  }
 }

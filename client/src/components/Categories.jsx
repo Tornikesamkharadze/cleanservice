@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { categories } from "../data";
 import "../styles/Categories.scss";
 import { Link } from "react-router-dom";
@@ -6,8 +6,27 @@ import DryCleaningMobile from "./DryCleaningMobile";
 import ThreeColumnCard from "./ThreeColumnCard";
 
 const Categories = () => {
+  // State to track whether the screen is in desktop mode
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 900);
+
+  // Function to update the isDesktop state based on window width
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 900);
+    };
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Remove event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div className="categories">
+      {/* First set of categories */}
       <h1>სტანდარტული დასუფთავება 80 ლარიდან</h1>
       <p id="title">
         საუკეთესო გზა თქვენი ბინის სისუფთავის <br />
@@ -25,13 +44,15 @@ const Categories = () => {
                   className="details"
                   to={`/category/standart/${category.linkTo}`}
                 >
-                  გაიგე მეტი
+                  შეუკვეთე
                 </Link>
               )}
             </div>
           </div>
         ))}
       </div>
+
+      {/* Second set of categories */}
       <h1 style={{ paddingTop: "50px" }}>გენერალური დასუფთავება 150 ლარიდან</h1>
       <p id="title">
         იდეალური გადაწყვეტილება მათთვის ვინც ახალ <br />
@@ -49,20 +70,23 @@ const Categories = () => {
                   className="details"
                   to={`/category/general/${category.linkTo}`}
                 >
-                  გაიგე მეტი
+                  შეუკვეთე
                 </Link>
               )}
             </div>
           </div>
         ))}
       </div>
+
+      {/* Third set of categories */}
       <h1>რბილი ავეჯის და ხალიჩის ქიმიური წმენდა</h1>
       <p id="title">
         პროცედურას ამოჰყავს ღრმად ჩამჯდარი ჭუჭყი,
         <br /> სუნი და ლაქები
       </p>
-      {/* <DryCleaningMobile /> */}
-      <ThreeColumnCard />
+
+      {/* Conditional rendering based on screen width */}
+      {isDesktop ? <ThreeColumnCard /> : <DryCleaningMobile />}
     </div>
   );
 };

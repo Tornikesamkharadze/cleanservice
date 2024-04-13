@@ -62,8 +62,9 @@
     }
   }
 
-  h3 {
+  .service {
     font-size: 18px;
+    color: #24355a;
   }
 
   p {
@@ -84,5 +85,9 @@
     cursor: pointer;
     z-index: 999;
     background: none;
+  }
+  .crft_btn {
+    text-decoration: none;
+    color: rgb(69, 142, 240);
   }
 }

@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/DryCleaningMobile.scss";
 import { listingPhotoPaths } from "../data";
-import {
-  ArrowForwardIos,
-  ArrowBackIosNew,
-  Favorite,
-  DryCleaning,
-} from "@mui/icons-material";
+import { ArrowForwardIos, ArrowBackIosNew } from "@mui/icons-material";
 
 const DryCleaningMobile = () => {
   /* SLIDER FOR IMAGES */
@@ -34,7 +29,9 @@ const DryCleaningMobile = () => {
           {listingPhotoPaths.map((service, index) => (
             <div key={service.id} className="slides">
               <img src={service.img} alt={`photo ${index + 1}`} />
-              <h3>{service.price}</h3>
+              <h3 className="service" style={{ paddingTop: "20px" }}>
+                {service.price}
+              </h3>
               <p>{service.description}</p>
               <div
                 className="prev-button"
@@ -58,7 +55,9 @@ const DryCleaningMobile = () => {
           ))}
         </div>
       </div>
-      <Link to="#">ხელოსნის გამოძახება</Link>
+      <Link className="crft_btn" to="#">
+        ხელოსნის გამოძახება
+      </Link>
     </div>
   );
 };
