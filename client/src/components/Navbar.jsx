@@ -6,17 +6,12 @@ import { useSelector, useDispatch } from "react-redux";
 import { setLogout } from "../redux/state";
 
 const Navbar = () => {
-  // State for controlling the dropdown menu
   const [dropdownMenu, setDropdownMenu] = useState(false);
-
-  // Redux hooks for accessing user state and dispatching actions
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
-  // Ref for detecting clicks outside the dropdown menu
   const dropdownRef = useRef(null);
 
-  // Effect for closing dropdown when clicking outside
+  // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
@@ -30,38 +25,27 @@ const Navbar = () => {
     };
   }, [dropdownRef]);
 
-  // Function to close dropdown when link inside it is clicked
+  // Close dropdown when link inside it is clicked
   const handleLinkClick = () => {
     setDropdownMenu(false);
   };
 
   return (
     <div className="navbar">
-      {/* Logo */}
       <Link to="/">
         <img src="../../public/assets/logo.png" alt="logo" />
       </Link>
       <div className="navbar_right">
-        {/* Conditional rendering based on user authentication */}
-        {!user ? (
-          <Link to="/create-listing" className="host">
-            სერვისები
-          </Link>
-        ) : null}
-        <Link to="/contact" className="host">
-          კონტაქტი
-        </Link>
+        {!user ? <button className="host">სერვისები</button> : null}
+        <button className="host">კონტაქტი</button>
         {user ? (
-          <Link to="/create-listing" className="host">
-            სერვისები
-          </Link>
+          <button className="host">სერვისები</button>
         ) : (
           <Link to="register" className="host">
             რეგისტრაცია
           </Link>
         )}
       </div>
-      {/* Button to toggle dropdown menu */}
       <button
         className="navbar_right_account"
         onClick={() => setDropdownMenu(!dropdownMenu)}
@@ -80,11 +64,9 @@ const Navbar = () => {
           />
         )}
       </button>
-      {/* Dropdown menu */}
       {dropdownMenu && (
         <div className="navbar_right_accountmenu" ref={dropdownRef}>
           <div className="dropdown">
-            {/* Conditional rendering based on user authentication */}
             {!user ? (
               <button to="/create-listing" className="toast">
                 სერვისები
@@ -99,35 +81,19 @@ const Navbar = () => {
               </button>
             ) : null}
           </div>
-          {/* Links inside the dropdown menu */}
+
           {user ? (
             <>
-              <Link
-                to={`/${user._id}/trips`}
-                className="dropdown-link"
-                onClick={handleLinkClick}
-              >
+              <Link to={`/${user._id}/trips`} onClick={handleLinkClick}>
                 Trip List
               </Link>
-              <Link
-                to={`/${user._id}/wishList`}
-                className="dropdown-link"
-                onClick={handleLinkClick}
-              >
+              <Link to={`/${user._id}/wishList`} onClick={handleLinkClick}>
                 Wish List
               </Link>
-              <Link
-                to={`/${user._id}/properties`}
-                className="dropdown-link"
-                onClick={handleLinkClick}
-              >
+              <Link to={`/${user._id}/properties`} onClick={handleLinkClick}>
                 Property List
               </Link>
-              <Link
-                to={`/${user._id}/reservations`}
-                className="dropdown-link"
-                onClick={handleLinkClick}
-              >
+              <Link to={`/${user._id}/reservations`} onClick={handleLinkClick}>
                 Reservation List
               </Link>
               <Link
@@ -136,23 +102,15 @@ const Navbar = () => {
                   dispatch(setLogout());
                 }}
               >
-                Log Out
+                ანგარიშიდან გასვლა
               </Link>
             </>
           ) : (
             <>
-              <Link
-                to="/login"
-                className="dropdown-link"
-                onClick={handleLinkClick}
-              >
+              <Link to="/login" onClick={handleLinkClick}>
                 შესვლა
               </Link>
-              <Link
-                to="/register"
-                className="dropdown-link"
-                onClick={handleLinkClick}
-              >
+              <Link to="/register" onClick={handleLinkClick}>
                 რეგისტრაცია
               </Link>
             </>

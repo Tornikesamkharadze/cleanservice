@@ -59,11 +59,13 @@
     gap: 20px;
 
     .host {
+      border: none;
+      background-color: transparent;
       text-decoration: none;
       color: $blue;
       font-weight: 700;
       cursor: pointer;
-
+      font-size: 18px;
       &:hover {
         color: $pinkred;
       }

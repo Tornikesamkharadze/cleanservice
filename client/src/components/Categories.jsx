@@ -8,7 +8,6 @@ import ThreeColumnCard from "./ThreeColumnCard";
 const Categories = () => {
   // State to track whether the screen is in desktop mode
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 900);
-/*   background: linear-gradient(135deg, #f9ce34, #ee2a7b, #6228d7); */
 
   // Function to update the isDesktop state based on window width
   useEffect(() => {
