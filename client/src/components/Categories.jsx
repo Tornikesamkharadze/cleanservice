@@ -25,7 +25,7 @@ const Categories = () => {
   }, []);
 
   return (
-    <div className="categories">
+    <div id="services" className="categories">
       {/* First set of categories */}
       <h1>სტანდარტული დასუფთავება 80 ლარიდან</h1>
       <p id="title">

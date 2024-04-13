@@ -18,7 +18,10 @@ const Contact = () => {
                 </div>
               </div>
               <div className="contact-methods">
-                <div className="contact-method">
+                <div
+                  style={{ marginBottom: "20px" }}
+                  className="contact-method"
+                >
                   <div id="contact">ტელეფონი</div>
                   <a href="tel:+995551627551">+995 558 88 88 88</a>
                 </div>

@@ -54,6 +54,7 @@ const HeadingText = styled.h1`
   text-align: center;
   padding: 40px;
   color: #24355a;
+  font-size: 27px;
 `;
 
 const AppContainer = styled.div`
