@@ -269,7 +269,7 @@ const TitleWrapper = styled.div`
 `;
 
 const ContentWrapper = styled.section`
-  /*  height: 100vh; */
+  height: calc(100vh - 100px); /* Adjust the height as needed */
   display: flex;
   flex-direction: column;
   justify-content: center;
