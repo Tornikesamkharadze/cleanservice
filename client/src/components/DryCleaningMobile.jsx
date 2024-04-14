@@ -55,7 +55,7 @@ const DryCleaningMobile = () => {
           ))}
         </div>
       </div>
-      <Link className="crft_btn" to="#">
+      <Link className="crft_btn" to={`/category/craftsman/order`}>
         ხელოსნის გამოძახება
       </Link>
     </div>

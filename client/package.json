@@ -16,6 +16,7 @@
     "@mui/material": "^5.15.15",
     "@reduxjs/toolkit": "^2.2.3",
     "antd": "^5.16.1",
+    "axios": "^1.6.8",
     "google-map-react": "^2.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -76,7 +76,7 @@ router.post("/login", async (req, res) => {
 
     /* Check if user exists */
     const user = await User.findOne({ email });
-    
+
     if (!user) {
       return res.status(409).json({ message: "მომხმარებელი არ არსებობს!" });
     }

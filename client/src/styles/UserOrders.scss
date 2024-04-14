@@ -1,0 +1,57 @@
+.user-orders-container {
+  background: url("../../public/assets/bubble.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 100vh;
+}
+
+.no_order {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #457ef0;
+  font-size: 40px;
+}
+
+.user-order {
+  background-color: #fff; /* White background color */
+  border: 1px solid #e0e0e0;
+  max-width: 780px;
+  width: 100%; /* Ensure full width */
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 20px;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 400px;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  &:nth-child(even) {
+    background-color: #f8f8f8; /* Alternate background color */
+  }
+}
+
+.order-details {
+  margin-top: 16px;
+  .title {
+    color: #457ef0; /* Blue for titles */
+  }
+  .list {
+    color: #24355a; /* Dark blue for list items */
+  }
+  p {
+    margin: 8px 0;
+    font-size: 16px;
+    line-height: 1.4;
+    color: #333; /* Dark grey for regular text */
+    &:first-child {
+      font-weight: bold;
+      color: #000; /* Black for bold text */
+    }
+  }
+}

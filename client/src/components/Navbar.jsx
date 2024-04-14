@@ -198,26 +198,8 @@ const Navbar = () => {
 
           {user ? (
             <>
-              <RouterLink to={`/${user._id}/trips`} onClick={handleLinkClick}>
-                Trip List
-              </RouterLink>
-              <RouterLink
-                to={`/${user._id}/wishList`}
-                onClick={handleLinkClick}
-              >
-                Wish List
-              </RouterLink>
-              <RouterLink
-                to={`/${user._id}/properties`}
-                onClick={handleLinkClick}
-              >
-                Property List
-              </RouterLink>
-              <RouterLink
-                to={`/${user._id}/reservations`}
-                onClick={handleLinkClick}
-              >
-                Reservation List
+              <RouterLink to="user_orders" onClick={handleLinkClick}>
+                ჩემი შეკვეთები
               </RouterLink>
               <RouterLink
                 to="/"
