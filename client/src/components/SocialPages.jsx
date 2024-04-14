@@ -12,12 +12,20 @@ const SocialPages = () => {
             <PiInstagramLogoThin size={30} style={{ color: "white" }} />
           </InstagramIconWrapper>
         </SocialLink>
-        <SocialLink href="https://www.facebook.com" target="_blank" style={{ color: "white" }}>
+        <SocialLink
+          href="https://www.facebook.com"
+          target="_blank"
+          style={{ color: "white" }}
+        >
           <FacebookIconWrapper>
             <FaFacebook size={30} />
           </FacebookIconWrapper>
         </SocialLink>
-        <SocialLink href="https://web.whatsapp.com/" target="_blank" style={{ color: "white" }}>
+        <SocialLink
+          href="https://web.whatsapp.com/"
+          target="_blank"
+          style={{ color: "white" }}
+        >
           <WhatsappIconWrapper>
             <FaWhatsapp size={30} />
           </WhatsappIconWrapper>

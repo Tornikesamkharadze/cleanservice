@@ -7,6 +7,7 @@ import LoginPage from "./pages/LoginPage";
 import Navbar from "./components/Navbar";
 import StandartClean from "./components/StandartClean";
 import CraftsMan from "./pages/CraftsMan";
+import GeneralCleaning from "./components/GeneralCleaning";
 function App() {
   return (
     <>
@@ -17,6 +18,7 @@ function App() {
           <Route index="/" element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/category/general/order" element={<GeneralCleaning />} />
           <Route path="/category/standart/order" element={<StandartClean />} />
           <Route path="/category/craftsman/order" element={<CraftsMan />} />
         </Routes>

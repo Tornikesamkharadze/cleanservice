@@ -8,13 +8,7 @@ import generalSoap from "../../public/assets/generalSoap.png";
 import bubblebg from "../../public/assets/bubble.jpg";
 //antd
 import { DatePicker, TimePicker } from "antd";
-import { Select } from "antd";
 const format = "HH:mm";
-const OPTIONS = [
-  "ავეჯის ქიმწმენდა",
-  "სანტექნიკის შეკეთება",
-  "სარეცხი და ჭურჭლის მანქანის შეკეთება",
-];
 
 const GeneralCleaning = () => {
   const userId = useSelector((state) => state.user?._id); // Access the userId from Redux store
@@ -24,12 +18,13 @@ const GeneralCleaning = () => {
     lastName: "",
     phoneNumber: "",
     date: "", // Add date field to the state
+    quantity: "30",
+    price: "80",
     time: "",
     address: "",
-    category: "ხელოსნის გამოძახება",
-    services: [],
+    category: "გენერალური დასუფთავება",
   });
-  console.log(orderData);
+
   const [formCompleted, setFormCompleted] = useState(false); // State to track form completion
 
   useEffect(() => {
@@ -40,18 +35,36 @@ const GeneralCleaning = () => {
       orderData.phoneNumber !== "" &&
       orderData.date !== "" &&
       orderData.time !== "";
-
-    // Update the state with the result
     setFormCompleted(isFormCompleted);
   }, [orderData]);
 
-  const handleChange = (value, option) => {
-    console.log("Selected items:", value); // Check what value is received
-    // Update orderData with selected services
-    setOrderData({
-      ...orderData,
-      services: value,
-    });
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "quantity") {
+      // Parse the value to an integer
+      const parsedValue = parseInt(value, 10);
+
+      // Calculate the quantity change
+      const quantityChange = parsedValue - parseInt(orderData.quantity, 10);
+
+      // Calculate the price change based on the quantity change
+      const priceChange = quantityChange * 15;
+
+      // Calculate the new price
+      let newPrice = parseInt(orderData.price, 10) + priceChange;
+
+      // Update orderData with new quantity and price
+      setOrderData({
+        ...orderData,
+        [name]: parsedValue,
+        price: newPrice.toString(), // Convert price to string
+      });
+    } else {
+      setOrderData({
+        ...orderData,
+        [name]: value,
+      });
+    }
   };
 
   const handleTimeChange = (time, timeString) => {
@@ -80,8 +93,9 @@ const GeneralCleaning = () => {
         phoneNumber: "",
         date: "",
         time: "",
+        quantity: "30",
+        price: "80", // Reset price to default
         address: "",
-        services: [],
       });
 
       // Update form completion state
@@ -115,9 +129,7 @@ const GeneralCleaning = () => {
               placeholder="სახელი"
               name="firstName"
               value={orderData.firstName}
-              onChange={(e) =>
-                setOrderData({ ...orderData, firstName: e.target.value })
-              }
+              onChange={handleChange}
               required
               disabled={!userId}
             />
@@ -129,9 +141,7 @@ const GeneralCleaning = () => {
               placeholder="გვარი"
               name="lastName"
               value={orderData.lastName}
-              onChange={(e) =>
-                setOrderData({ ...orderData, lastName: e.target.value })
-              }
+              onChange={handleChange}
               required
               disabled={!userId}
             />
@@ -143,9 +153,7 @@ const GeneralCleaning = () => {
               placeholder="ტელეფონის ნომერი"
               name="phoneNumber"
               value={orderData.phoneNumber}
-              onChange={(e) =>
-                setOrderData({ ...orderData, phoneNumber: e.target.value })
-              }
+              onChange={handleChange}
               required
               disabled={!userId}
             />
@@ -155,7 +163,7 @@ const GeneralCleaning = () => {
             <CustomDatePicker
               format="MM-DD-YYYY"
               onChange={(date, dateString) =>
-                setOrderData({ ...orderData, date: dateString })
+                handleChange({ target: { name: "date", value: dateString } })
               }
               disabled={!userId}
             />
@@ -169,41 +177,39 @@ const GeneralCleaning = () => {
             />
           </FormWrapper>
           <FormWrapper>
-            <InputLabel>აირჩიეთ სერვისი</InputLabel>
-            <Select
-              mode="multiple"
-              placeholder="სერვისის არჩევა"
-              value={orderData.services}
-              onChange={handleChange}
-              style={{ width: "100%" }}
-              options={OPTIONS.map((item) => ({
-                value: item,
-                label: item,
-              }))}
-            />
-          </FormWrapper>
-          <FormWrapper>
             <InputLabel>მიუთითეთ მისამართი</InputLabel>
             <StyledInput
               type="text"
-              placeholder="მისამართი"
+              placeholder="თბილისი, რაზმაძის ქუჩა N68, სართული 11 ბინა 40"
               name="address"
               value={orderData.address}
-              onChange={(e) =>
-                setOrderData({ ...orderData, address: e.target.value })
-              }
+              onChange={handleChange}
               required
               disabled={!userId}
             />
           </FormWrapper>
+          <FormWrapper>
+            <InputLabel>
+              ბინის ფართობი (კვადრატულობა) {orderData.quantity}
+            </InputLabel>
+            <StyledInput
+              type="range"
+              min={30}
+              max={300}
+              step={5}
+              name="quantity"
+              value={orderData.quantity}
+              onChange={handleChange}
+              disabled={!userId} // Disable if userId is falsy
+            />
+            <QuantityText>
+              დასუფთავების ღირებულება შეადგენს {orderData.price} ლარს
+            </QuantityText>
+          </FormWrapper>
           {userId ? (
             <Button
               type="submit"
-              disabled={
-                !formCompleted ||
-                !orderData.address ||
-                orderData.services.length === 0
-              }
+              disabled={!formCompleted || !orderData.address}
             >
               შეკვეთის დამატება
             </Button>
@@ -333,6 +339,10 @@ const CustomTimePicker = styled(TimePicker)`
       font-size: 14px;
     }
   }
+`;
+
+const QuantityText = styled.p`
+  font-size: 14px;
 `;
 
 const Button = styled.button`
