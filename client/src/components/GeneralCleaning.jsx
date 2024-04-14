@@ -273,7 +273,6 @@ const TitleWrapper = styled.div`
 `;
 
 const ContentWrapper = styled.section`
-    height: calc(100vh - 100px); /* Adjust the height as needed */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -282,6 +281,7 @@ const ContentWrapper = styled.section`
     max-width: 760px;
     width: 100%;
     padding: 0px 30px;
+    margin-bottom: 50px;
   }
 `;
 

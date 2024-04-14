@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { FaArrowTurnDown } from "react-icons/fa6";
 import styled from "styled-components";
-import generalSoap from "../../public/assets/generalSoap.png";
+import craftsman from "../../public/assets/craftsman.png";
 import bubblebg from "../../public/assets/bubble.jpg";
 //antd
 import { DatePicker, TimePicker } from "antd";
@@ -102,7 +102,7 @@ const GeneralCleaning = () => {
   return (
     <BackgroundWrapper>
       <TitleWrapper>
-        <img src={generalSoap} alt="soap" />
+        <img src={craftsman} alt="craftsman" />
         <p>CLEAN SERVICE</p>
         <h1>{orderData.category}</h1>
       </TitleWrapper>
@@ -268,7 +268,6 @@ const TitleWrapper = styled.div`
 `;
 
 const ContentWrapper = styled.section`
-  height: calc(100vh - 100px); /* Adjust the height as needed */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -277,6 +276,7 @@ const ContentWrapper = styled.section`
     max-width: 760px;
     width: 100%;
     padding: 0px 30px;
+    margin-bottom: 50px;
   }
 `;
 
